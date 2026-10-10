@@ -106,20 +106,13 @@ export const register: Register = on => {
     return next(e)
   })
 
-  // The settings hooks' events carry the transcript's path; the first one seen reads it.
+  // The settings hooks' session start and prompt events carry the transcript's path; the first
+  // one seen reads it. Both pass the event on unchanged.
   on('classic.SessionStart', async ($, e, next) => {
     await readHistory($, e.transcript_path)
     return next(e)
   }).catch(($, e, next) => next(e))
   on('classic.UserPromptSubmit', async ($, e, next) => {
-    await readHistory($, e.transcript_path)
-    return next(e)
-  }).catch(($, e, next) => next(e))
-  on('classic.PreToolUse', async ($, e, next) => {
-    await readHistory($, e.transcript_path)
-    return next(e)
-  }).catch(($, e, next) => next(e))
-  on('classic.Stop', async ($, e, next) => {
     await readHistory($, e.transcript_path)
     return next(e)
   }).catch(($, e, next) => next(e))

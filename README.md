@@ -46,6 +46,19 @@ Every time the mod records is kept with the session, so a resumed session shows 
 
 - **One hooks module** (`hooks/register.ts`, with `hooks/time.mjs`). It runs inside Claude Code as a mod: it draws the time above message rows, records times as messages arrive, reads the session transcript once, and adds the `/timestamps` command.
 
+## What each hook does
+
+None of the mod's hooks changes, blocks or approves anything. Each one passes its event on unchanged.
+
+| Hook | When it runs | What it does |
+| - | - | - |
+| `session.start` | The session starts | Loads the times kept for this session and your `/timestamps` choice, adds the `/timestamps` command, and drops kept times beyond the 60 most recent sessions |
+| `classic.SessionStart`, `classic.UserPromptSubmit` | The session starts; you send a prompt | Reads the event's `transcript_path` once, to find the times of earlier messages |
+| `turn.start`, `turn.complete` | Claude starts and finishes a turn | Notes whether a turn is running, so a reply's time is taken only while it streams in |
+| `session.append` | Claude Code stores a row of the conversation | After the row is stored, records the time of a prompt you sent; the row itself is untouched |
+| `command.run` for `timestamps` | You run `/timestamps` | Switches between clock, relative and off |
+| `ui.render` for `UserMessage`, `AssistantMessage` | A prompt or a reply is drawn | Draws Claude Code's own row unchanged, with a dim time line above it |
+
 ## What it reads, writes, runs and sends
 
 - **Reads** the current session's transcript once, to find the times of messages from before it started. It reads no other files.
