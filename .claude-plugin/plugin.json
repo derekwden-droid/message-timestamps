@@ -1,0 +1,17 @@
+{
+  "name": "message-timestamps",
+  "displayName": "Message Timestamps",
+  "version": "1.0.0",
+  "description": "Shows the time above each prompt you send and each reply Claude starts, in the terminal and the desktop app's Code tab, as clock times or as time since. /timestamps switches between clock, relative and off.",
+  "author": {
+    "name": "Derek Denmark",
+    "url": "https://github.com/derekwden-droid"
+  },
+  "homepage": "https://github.com/derekwden-droid/message-timestamps",
+  "repository": "https://github.com/derekwden-droid/message-timestamps",
+  "license": "MIT",
+  "keywords": ["timestamps", "time", "transcript", "mod", "interface"],
+  "documentationUrl": "https://github.com/derekwden-droid/message-timestamps/blob/main/README.md",
+  "supportUrl": "https://github.com/derekwden-droid/message-timestamps/issues",
+  "privacyPolicyUrl": "https://github.com/derekwden-droid/message-timestamps/blob/main/PRIVACY.md"
+}
